@@ -18,7 +18,7 @@ public class Navigation {
         for (String navItem : navItems) {
             JButton navButton = new JButton(navItem);
             navButton.setFont(new Font("Work Sans", Font.PLAIN, 14));
-            navButton.setForeground(new Color(0x0d161b));
+            navButton.setForeground(Color.WHITE);
             navButton.setContentAreaFilled(false);
             navButton.setBorderPainted(false);
             navButton.setCursor(new Cursor(Cursor.HAND_CURSOR));

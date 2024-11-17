@@ -11,7 +11,7 @@ public class Header {
 
     public Header() {
         header.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(0xe7eff3)));
-        header.setBackground(Color.WHITE);
+        header.setBackground(new Color(0x121C22));
         header.setPreferredSize(new Dimension(0, 60));
         header.add(titlePanel, BorderLayout.WEST);
         header.add(navPanel, BorderLayout.EAST);

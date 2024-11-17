@@ -11,7 +11,7 @@ public class Title {
     public Title() {
         logoPanel.setOpaque(false);
         titleLabel.setFont(new Font("Work Sans", Font.BOLD, 18));
-        titleLabel.setForeground(new Color(0x0d161b));
+        titleLabel.setForeground(Color.WHITE);
         logoPanel.add(logoLabel);
         logoPanel.add(titleLabel);
     }
