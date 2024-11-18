@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5b66dcb7-bb43-42d0-9fc4-0489da58889c" name="Changes" comment="improving the card of the ui, added different colors">
-      <change afterPath="$PROJECT_DIR$/src/main/java/components/buttons/StylishButton.java" afterDir="false" />
+    <list default="true" id="5b66dcb7-bb43-42d0-9fc4-0489da58889c" name="Changes" comment="fixed cards layout, added view details btn">
+      <change afterPath="$PROJECT_DIR$/src/main/java/components/SearchForm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/components/Content.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/components/Content.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/components/Header.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/components/Header.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/components/Navigation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/components/Navigation.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,25 +46,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.SmartOccupation.executor&quot;: &quot;Run&quot;,
-    &quot;Application.SmartOcupation.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH&quot;: &quot;512&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.SmartOccupation.executor": "Run",
+    "Application.SmartOcupation.executor": "Debug",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH": "512",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/morgade/Documents/jcalendar-1.4.jar",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="SmartOcupation" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="SmartOccupation" />
@@ -95,7 +96,7 @@
       <workItem from="1731856725084" duration="4257000" />
       <workItem from="1731862127230" duration="56000" />
       <workItem from="1731872756480" duration="3850000" />
-      <workItem from="1731943135846" duration="2165000" />
+      <workItem from="1731943135846" duration="5563000" />
     </task>
     <task id="LOCAL-00001" summary="added first form">
       <option name="closed" value="true" />
@@ -137,7 +138,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731878242899</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="fixed cards layout, added view details btn">
+      <option name="closed" value="true" />
+      <created>1731945341978</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1731945341978</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -147,6 +156,7 @@
     <MESSAGE value="added first form" />
     <MESSAGE value="refactored first ui sample into different components" />
     <MESSAGE value="improving the card of the ui, added different colors" />
-    <option name="LAST_COMMIT_MESSAGE" value="improving the card of the ui, added different colors" />
+    <MESSAGE value="fixed cards layout, added view details btn" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed cards layout, added view details btn" />
   </component>
 </project>

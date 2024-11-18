@@ -13,15 +13,33 @@ public class Content {
     JLabel sectionTitle = this.createSectionTitle();
 
     public Content() {
-        contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
+        // Use GridBagLayout for better control over component positioning
+        contentPanel.setLayout(new GridBagLayout());
         contentPanel.setBackground(new Color(0x121C22)); // Equivalent to `bg-slate-50`
-        contentPanel.setBorder(BorderFactory.createEmptyBorder(20, 40, 20, 40));
+        contentPanel.setBorder(BorderFactory.createEmptyBorder(0, 40, 20, 40)); // No top padding
 
-        sectionTitle.setAlignmentX(Component.CENTER_ALIGNMENT); // Center align the title
-        contentPanel.add(sectionTitle);
-        contentPanel.add(Box.createRigidArea(new Dimension(0, 20))); // Add space below the title
+        // GridBagConstraints for layout management
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 0, 5, 0); // Small gap between components
 
-        this.createRandomData();
+        // Title section
+        sectionTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        contentPanel.add(sectionTitle, gbc);
+
+        // Add Search Form section
+        SearchForm searchForm = new SearchForm();
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        contentPanel.add(searchForm, gbc);
+
+        // Add a small gap after the search form
+        gbc.gridy = 2;
+        contentPanel.add(Box.createRigidArea(new Dimension(0, 10)), gbc);
+
+        // Add rental data below the search form
+        this.createRandomData(gbc);
     }
 
     public JPanel GetContent() {
@@ -32,83 +50,54 @@ public class Content {
         JLabel sectionTitle = new JLabel("Control de Alquileres");
         sectionTitle.setFont(new Font("Work Sans", Font.BOLD, 28)); // Slightly larger font
         sectionTitle.setForeground(Color.WHITE);
-        sectionTitle.setBorder(BorderFactory.createEmptyBorder(10, 0, 20, 0)); // Add spacing around the title
+        sectionTitle.setBorder(BorderFactory.createEmptyBorder(10, 0, 20, 0)); // Adjust spacing around the title
         return sectionTitle;
     }
 
+    private void createRandomData(GridBagConstraints gbc) {
+        for (int i = 0; i < 5; i++) {
+            Client client = new Client("Daniel", "daniel_@gmail.com", "123456789", "12345678A", 123456789);
+            House house = new House(client, 1, new Date(), new Date(), 1, "Calle 1", 100, 3, 2, 1000);
+
+            JPanel card = createRentalItem(house, i % 2 == 0);
+            card.setMaximumSize(new Dimension(Integer.MAX_VALUE, 150));
+
+            // Adding each card to contentPanel
+            gbc.gridx = 0;
+            gbc.gridy = 3 + i;  // Add a new row for each rental item
+            contentPanel.add(card, gbc);
+            contentPanel.add(Box.createRigidArea(new Dimension(0, 10)), gbc);
+        }
+    }
+
     private JPanel createRentalItem(House house, boolean isAlternate) {
-        JPanel rentalPanel = new JPanel(new BorderLayout()); // BorderLayout for full-width alignment
+        JPanel rentalPanel = new JPanel(new BorderLayout());
         rentalPanel.setBackground(isAlternate ? new Color(0x1A2A33) : new Color(0x121C22));
         rentalPanel.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createLineBorder(new Color(0x37474F), 2), // Card border
-                BorderFactory.createEmptyBorder(10, 10, 10, 10) // Internal padding
+                BorderFactory.createLineBorder(new Color(0x37474F), 2),
+                BorderFactory.createEmptyBorder(10, 10, 10, 10)
         ));
 
-        // Panel interior de la card
-        JPanel infoPanel = new JPanel(new GridLayout(2, 2, 10, 10)); // 4 rows, 2 columns with spacing
+        JPanel infoPanel = new JPanel(new GridLayout(2, 2, 10, 10));
         infoPanel.setBackground(rentalPanel.getBackground());
 
-        // Labels al grid
         infoPanel.add(this.dataLabel("Nombre huesped : " + house.getClient().getFullName()));
-
         infoPanel.add(this.dataLabel("Ubicación Vivienda: " + house.getLocation()));
-
         infoPanel.add(this.dataLabel("Precio: $" + house.getMensualPrice()));
-
-        infoPanel.add(this.dataLabel("Fecha de entrada: "+house.getEntryDate().toString()));
-
-        infoPanel.add(this.dataLabel("Fecha de salida: "+house.getExitDate().toString()));
+        infoPanel.add(this.dataLabel("Fecha de entrada: " + house.getEntryDate().toString()));
 
         StylishButton detailsButton = new StylishButton("Ver detalles");
-
         infoPanel.add(detailsButton);
 
-        // Panel de info al centro
         rentalPanel.add(infoPanel, BorderLayout.CENTER);
-
-        // Evento de mouse para añadir interactividad
-        rentalPanel.addMouseListener(new java.awt.event.MouseAdapter() {
-            @Override
-            public void mouseEntered(java.awt.event.MouseEvent e) {
-                rentalPanel.setBackground(new Color(0x2C3E50)); // Highlight on hover
-                infoPanel.setBackground(new Color(0x2C3E50));
-            }
-
-            @Override
-            public void mouseExited(java.awt.event.MouseEvent e) {
-                rentalPanel.setBackground(isAlternate ? new Color(0x1A2A33) : new Color(0x121C22)); // Revert on exit
-                infoPanel.setBackground(rentalPanel.getBackground());
-            }
-        });
-
-        detailsButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent e) {
-                JOptionPane.showMessageDialog(null, "Details:\n" + house.toString());
-            }
-        });
 
         return rentalPanel;
     }
-
 
     private JLabel dataLabel(String data) {
         JLabel label = new JLabel(data);
         label.setFont(new Font("Work Sans", Font.PLAIN, 14));
         label.setForeground(Color.WHITE);
         return label;
-    }
-
-
-    private void createRandomData() {
-        for (int i = 0; i < 5; i++) {
-            Client client = new Client("Daniel", "daniel_@gmail.com", "123456789", "12345678A", 123456789);
-            House house = new House(client, 1, new Date(), new Date(), 1, "Calle 1", 100, 3, 2, 1000);
-
-            JPanel card = createRentalItem(house, i % 2 == 0);
-            card.setMaximumSize(new Dimension(Integer.MAX_VALUE, 150)); // Full width with
-            contentPanel.add(card);
-            contentPanel.add(Box.createRigidArea(new Dimension(0, 10)));
-        }
     }
 }
