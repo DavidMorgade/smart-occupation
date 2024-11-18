@@ -5,66 +5,80 @@ import javax.swing.*;
 import java.awt.*;
 
 public class SearchForm extends JPanel {
-    JTextField searchField = new JTextField(20); // Text field for search
-    JDateChooser dateChooser = new JDateChooser(); // Date chooser for rental date
+    private JTextField searchField = new JTextField(20); // Text field for search
+    private JDateChooser entryDateChooser = new JDateChooser(); // Date chooser for entry date
+    private JDateChooser exitDateChooser = new JDateChooser(); // Date chooser for exit date
 
     public SearchForm() {
-        // Use GridBagLayout for better control over component placement
-        setLayout(new GridBagLayout());
-        setOpaque(false); // Make it transparent
+        // Use BoxLayout for a simple vertical layout
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        setOpaque(false); // Make the background transparent
 
-        // GridBagConstraints for controlling component layout
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(0, 5, 0, 5); // Reduced vertical padding around components
+        // Panel for date filters
+        JPanel datePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        datePanel.setOpaque(false); // Transparent background
 
-        // Create components
-        JLabel searchLabel = new JLabel("Buscar: ");
+        // Entry date components
+        JLabel entryDateLabel = new JLabel("Fecha de Entrada: ");
+        entryDateLabel.setFont(new Font("Work Sans", Font.PLAIN, 14));
+        entryDateLabel.setForeground(Color.WHITE);
+
+        entryDateChooser.setDateFormatString("dd/MM/yyyy");
+        entryDateChooser.setPreferredSize(new Dimension(130, 25));
+
+        // Exit date components
+        JLabel exitDateLabel = new JLabel("Fecha de Salida: ");
+        exitDateLabel.setFont(new Font("Work Sans", Font.PLAIN, 14));
+        exitDateLabel.setForeground(Color.WHITE);
+
+        exitDateChooser.setDateFormatString("dd/MM/yyyy");
+        exitDateChooser.setPreferredSize(new Dimension(130, 25));
+
+        // Add components for date filters
+        datePanel.add(entryDateLabel);
+        datePanel.add(entryDateChooser);
+        datePanel.add(exitDateLabel);
+        datePanel.add(exitDateChooser);
+
+        // Panel for search bar
+        JPanel searchPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        searchPanel.setOpaque(false);
+
+        JLabel searchLabel = new JLabel("Buscar por Nombre: ");
         searchLabel.setFont(new Font("Work Sans", Font.PLAIN, 14));
         searchLabel.setForeground(Color.WHITE);
 
         searchField.setFont(new Font("Work Sans", Font.PLAIN, 14));
-        searchField.setPreferredSize(new Dimension(150, 25)); // Set a smaller preferred size
+        searchField.setPreferredSize(new Dimension(200, 25));
 
-        JLabel dateLabel = new JLabel("Buscar por Fecha: ");
-        dateLabel.setFont(new Font("Work Sans", Font.PLAIN, 14));
-        dateLabel.setForeground(Color.WHITE);
+        searchPanel.add(searchLabel);
+        searchPanel.add(searchField);
 
-        dateChooser.setDateFormatString("dd/MM/yyyy");
-        dateChooser.setPreferredSize(new Dimension(130, 25));
-
-        // Add components to the panel with GridBagLayout
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        add(searchLabel, gbc);
-
-        gbc.gridx = 1;
-        gbc.gridy = 0;
-        add(searchField, gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        add(dateLabel, gbc);
-
-        gbc.gridx = 1;
-        gbc.gridy = 1;
-        add(dateChooser, gbc);
+        // Add panels to the main form
+        add(datePanel);
+        add(Box.createRigidArea(new Dimension(0, 10))); // Small space between panels
+        add(searchPanel);
     }
 
     public String getSearchText() {
         return searchField.getText().toLowerCase();
     }
 
-    public java.util.Date getSelectedDate() {
-        return dateChooser.getDate();
+    public java.util.Date getEntryDate() {
+        return entryDateChooser.getDate();
     }
 
-    // Add listeners for text and date filtering
+    public java.util.Date getExitDate() {
+        return exitDateChooser.getDate();
+    }
+
     public void addSearchListener(javax.swing.event.DocumentListener listener) {
         searchField.getDocument().addDocumentListener(listener);
     }
 
     public void addDateChangeListener(java.beans.PropertyChangeListener listener) {
-        dateChooser.getDateEditor().addPropertyChangeListener(listener);
+        entryDateChooser.getDateEditor().addPropertyChangeListener(listener);
+        exitDateChooser.getDateEditor().addPropertyChangeListener(listener);
     }
 
     public JPanel GetSearchForm() {

@@ -6,40 +6,41 @@ import mocks.House;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Content {
-    JPanel contentPanel = new JPanel();
-    JLabel sectionTitle = this.createSectionTitle();
+    private JPanel contentPanel = new JPanel(); // Panel principal
+    private JPanel rentalListPanel = new JPanel(); // Panel para las cards
+    private List<House> houseList = new ArrayList<>(); // Lista de viviendas
+    private SearchForm searchForm = new SearchForm(); // Formulario de búsqueda
 
     public Content() {
-        // Use GridBagLayout for better control over component positioning
-        contentPanel.setLayout(new GridBagLayout());
-        contentPanel.setBackground(new Color(0x121C22)); // Equivalent to `bg-slate-50`
-        contentPanel.setBorder(BorderFactory.createEmptyBorder(0, 40, 20, 40)); // No top padding
+        contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
+        contentPanel.setBackground(new Color(0x121C22)); // Fondo oscuro
+        contentPanel.setBorder(BorderFactory.createEmptyBorder(20, 40, 20, 40));
 
-        // GridBagConstraints for layout management
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(5, 0, 5, 0); // Small gap between components
+        // Título
+        JLabel sectionTitle = createSectionTitle();
+        sectionTitle.setAlignmentX(Component.CENTER_ALIGNMENT); // Centrar título
+        contentPanel.add(sectionTitle);
+        contentPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Espacio entre título y formulario
 
-        // Title section
-        sectionTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        contentPanel.add(sectionTitle, gbc);
+        // Añadir formulario de búsqueda
+        contentPanel.add(searchForm);
+        contentPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Espacio entre formulario y lista
 
-        // Add Search Form section
-        SearchForm searchForm = new SearchForm();
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        contentPanel.add(searchForm, gbc);
+        // Panel para las cards
+        rentalListPanel.setLayout(new BoxLayout(rentalListPanel, BoxLayout.Y_AXIS));
+        rentalListPanel.setOpaque(false); // Fondo transparente
+        contentPanel.add(rentalListPanel);
 
-        // Add a small gap after the search form
-        gbc.gridy = 2;
-        contentPanel.add(Box.createRigidArea(new Dimension(0, 10)), gbc);
+        // Crea datos iniciales
+        createRandomData();
 
-        // Add rental data below the search form
-        this.createRandomData(gbc);
+        // Configura los filtros dinámicos
+        setupFilters();
     }
 
     public JPanel GetContent() {
@@ -48,49 +49,31 @@ public class Content {
 
     private JLabel createSectionTitle() {
         JLabel sectionTitle = new JLabel("Control de Alquileres");
-        sectionTitle.setFont(new Font("Work Sans", Font.BOLD, 28)); // Slightly larger font
+        sectionTitle.setFont(new Font("Work Sans", Font.BOLD, 28));
         sectionTitle.setForeground(Color.WHITE);
-        sectionTitle.setBorder(BorderFactory.createEmptyBorder(10, 0, 20, 0)); // Adjust spacing around the title
+        sectionTitle.setBorder(BorderFactory.createEmptyBorder(10, 0, 20, 0));
         return sectionTitle;
     }
 
-    private void createRandomData(GridBagConstraints gbc) {
-        for (int i = 0; i < 5; i++) {
-            Client client = new Client("Daniel", "daniel_@gmail.com", "123456789", "12345678A", 123456789);
-            House house = new House(client, 1, new Date(), new Date(), 1, "Calle 1", 100, 3, 2, 1000);
-
-            JPanel card = createRentalItem(house, i % 2 == 0);
-            card.setMaximumSize(new Dimension(Integer.MAX_VALUE, 150));
-
-            // Adding each card to contentPanel
-            gbc.gridx = 0;
-            gbc.gridy = 3 + i;  // Add a new row for each rental item
-            contentPanel.add(card, gbc);
-            contentPanel.add(Box.createRigidArea(new Dimension(0, 10)), gbc);
-        }
-    }
-
     private JPanel createRentalItem(House house, boolean isAlternate) {
-        JPanel rentalPanel = new JPanel(new BorderLayout());
+        JPanel rentalPanel = new JPanel(new BorderLayout()); // BorderLayout para cards de ancho completo
         rentalPanel.setBackground(isAlternate ? new Color(0x1A2A33) : new Color(0x121C22));
         rentalPanel.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(new Color(0x37474F), 2),
                 BorderFactory.createEmptyBorder(10, 10, 10, 10)
         ));
 
+        // Información de la vivienda
         JPanel infoPanel = new JPanel(new GridLayout(2, 2, 10, 10));
         infoPanel.setBackground(rentalPanel.getBackground());
-
-        infoPanel.add(this.dataLabel("Nombre huesped : " + house.getClient().getFullName()));
-        infoPanel.add(this.dataLabel("Ubicación Vivienda: " + house.getLocation()));
-        infoPanel.add(this.dataLabel("Precio: $" + house.getMensualPrice()));
-        infoPanel.add(this.dataLabel("Fecha de entrada: " + house.getEntryDate().toString()));
-
-        StylishButton detailsButton = new StylishButton("Ver detalles");
-        infoPanel.add(detailsButton);
+        infoPanel.add(dataLabel("Nombre huésped: " + house.getClient().getFullName()));
+        infoPanel.add(dataLabel("Ubicación Vivienda: " + house.getLocation()));
+        infoPanel.add(dataLabel("Precio: $" + house.getMensualPrice()));
+        infoPanel.add(dataLabel("Fecha entrada: " + house.getEntryDate().toString()));
+        infoPanel.add(dataLabel("Fecha salida: " + house.getExitDate().toString()));
+        infoPanel.add(new StylishButton("Ver Detalles"));
 
         rentalPanel.add(infoPanel, BorderLayout.CENTER);
-
         return rentalPanel;
     }
 
@@ -99,5 +82,73 @@ public class Content {
         label.setFont(new Font("Work Sans", Font.PLAIN, 14));
         label.setForeground(Color.WHITE);
         return label;
+    }
+
+    private void createRandomData() {
+        for (int i = 0; i < 10; i++) {
+            Client client = new Client("Huésped " + i, "email" + i + "@gmail.com", "123456789", "12345678A", 123456789);
+            House house = new House(client, 1, new Date(), new Date(), 1, "Calle " + i, 100, 3, 2, 1000);
+            houseList.add(house);
+        }
+
+        // Renderiza inicialmente todas las viviendas
+        renderContent(houseList);
+    }
+
+    private void renderContent(List<House> filteredHouses) {
+        rentalListPanel.removeAll(); // Limpia las cards actuales
+
+        int index = 0;
+        for (House house : filteredHouses) {
+            JPanel card = createRentalItem(house, index % 2 == 0);
+            rentalListPanel.add(card);
+            rentalListPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Espacio entre cards
+            index++;
+        }
+
+        rentalListPanel.revalidate();
+        rentalListPanel.repaint();
+    }
+
+    private void setupFilters() {
+        // Listener para el campo de búsqueda
+        searchForm.addSearchListener(new javax.swing.event.DocumentListener() {
+            @Override
+            public void insertUpdate(javax.swing.event.DocumentEvent e) {
+                filterContent();
+            }
+
+            @Override
+            public void removeUpdate(javax.swing.event.DocumentEvent e) {
+                filterContent();
+            }
+
+            @Override
+            public void changedUpdate(javax.swing.event.DocumentEvent e) {
+                filterContent();
+            }
+        });
+
+        // Listener para los seleccionadores de fecha
+        searchForm.addDateChangeListener(evt -> filterContent());
+    }
+
+    private void filterContent() {
+        String searchText = searchForm.getSearchText();
+        Date entryDate = searchForm.getEntryDate();
+        Date exitDate = searchForm.getExitDate();
+
+        List<House> filteredHouses = new ArrayList<>();
+        for (House house : houseList) {
+            boolean matchesSearch = searchText.isEmpty() || house.getClient().getFullName().toLowerCase().contains(searchText);
+            boolean matchesEntryDate = (entryDate == null || !house.getEntryDate().before(entryDate));
+            boolean matchesExitDate = (exitDate == null || !house.getExitDate().after(exitDate));
+
+            if (matchesSearch && matchesEntryDate && matchesExitDate) {
+                filteredHouses.add(house);
+            }
+        }
+
+        renderContent(filteredHouses);
     }
 }

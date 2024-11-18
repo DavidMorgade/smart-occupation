@@ -10,7 +10,7 @@ public class SmartOccupation {
     }
 
     private static void createAndShowGUI() {
-        JFrame frame = new JFrame("Galileo Design");
+        JFrame frame = new JFrame("Smart Occupation");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1200, 800);
 

@@ -14,7 +14,7 @@ public class Navigation {
     }
 
     private void AddLinks() {
-        String[] navItems = {"Dashboard", "Calendar", "Listings", "Inquiries", "Templates", "Reports"};
+        String[] navItems = {"Viviendas", "Usuarios"};
         for (String navItem : navItems) {
             JButton navButton = new JButton(navItem);
             navButton.setFont(new Font("Work Sans", Font.PLAIN, 14));
