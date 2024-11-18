@@ -4,11 +4,11 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Navigation {
-    JPanel navPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+    JPanel navPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 0)); // Adjust horizontal spacing
     JLabel avatarLabel = this.createAvatar();
 
     public Navigation() {
-        navPanel.setOpaque(false);
+        navPanel.setOpaque(false); // Match header background
         this.AddLinks();
         navPanel.add(avatarLabel);
     }
@@ -22,12 +22,15 @@ public class Navigation {
             navButton.setContentAreaFilled(false);
             navButton.setBorderPainted(false);
             navButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            navButton.setPreferredSize(new Dimension(100, 30)); // Uniform button size
             navPanel.add(navButton);
         }
     }
 
     private JLabel createAvatar() {
-        return new JLabel(new ImageIcon("avatar.png"));
+        JLabel avatar = new JLabel(new ImageIcon("avatar.png"));
+        avatar.setPreferredSize(new Dimension(40, 40)); // Ensure consistent avatar size
+        return avatar;
     }
 
     public JPanel getNavigation() {

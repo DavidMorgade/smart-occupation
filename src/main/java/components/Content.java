@@ -1,5 +1,6 @@
 package components;
 
+import components.buttons.StylishButton;
 import mocks.Client;
 import mocks.House;
 
@@ -43,48 +44,30 @@ public class Content {
                 BorderFactory.createEmptyBorder(10, 10, 10, 10) // Internal padding
         ));
 
-        // Inner panel for data using GridLayout
-        JPanel infoPanel = new JPanel(new GridLayout(4, 2, 10, 10)); // 4 rows, 2 columns with spacing
+        // Panel interior de la card
+        JPanel infoPanel = new JPanel(new GridLayout(2, 2, 10, 10)); // 4 rows, 2 columns with spacing
         infoPanel.setBackground(rentalPanel.getBackground());
 
-        // Add data labels to the grid
-        infoPanel.add(this.dataLabel("Name:"));
-        infoPanel.add(this.dataLabel(house.getClient().getFullName()));
+        // Labels al grid
+        infoPanel.add(this.dataLabel("Nombre huesped : " + house.getClient().getFullName()));
 
-        infoPanel.add(this.dataLabel("Email:"));
-        infoPanel.add(this.dataLabel(house.getClient().getEmail()));
+        infoPanel.add(this.dataLabel("Ubicación Vivienda: " + house.getLocation()));
 
-        infoPanel.add(this.dataLabel("Phone:"));
-        infoPanel.add(this.dataLabel(house.getClient().getPhone()));
+        infoPanel.add(this.dataLabel("Precio: $" + house.getMensualPrice()));
 
-        infoPanel.add(this.dataLabel("DNI:"));
-        infoPanel.add(this.dataLabel(house.getClient().getDni()));
+        infoPanel.add(this.dataLabel("Fecha de entrada: "+house.getEntryDate().toString()));
 
-        infoPanel.add(this.dataLabel("Card Number:"));
-        infoPanel.add(this.dataLabel(String.valueOf(house.getClient().getCardNumber())));
+        infoPanel.add(this.dataLabel("Fecha de salida: "+house.getExitDate().toString()));
 
-        infoPanel.add(this.dataLabel("Location:"));
-        infoPanel.add(this.dataLabel(house.getLocation()));
+        StylishButton detailsButton = new StylishButton("Ver detalles");
 
-        infoPanel.add(this.dataLabel("Price:"));
-        infoPanel.add(this.dataLabel("$" + house.getMensualPrice()));
+        infoPanel.add(detailsButton);
 
-        infoPanel.add(this.dataLabel("Entry Date:"));
-        infoPanel.add(this.dataLabel(house.getEntryDate().toString()));
-
-        infoPanel.add(this.dataLabel("Exit Date:"));
-        infoPanel.add(this.dataLabel(house.getExitDate().toString()));
-
-        // Add the info panel to the center of the rental panel
+        // Panel de info al centro
         rentalPanel.add(infoPanel, BorderLayout.CENTER);
 
-        // Add mouse events for interactivity
+        // Evento de mouse para añadir interactividad
         rentalPanel.addMouseListener(new java.awt.event.MouseAdapter() {
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent e) {
-                JOptionPane.showMessageDialog(null, "Details:\n" + house.toString());
-            }
-
             @Override
             public void mouseEntered(java.awt.event.MouseEvent e) {
                 rentalPanel.setBackground(new Color(0x2C3E50)); // Highlight on hover
@@ -98,6 +81,13 @@ public class Content {
             }
         });
 
+        detailsButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                JOptionPane.showMessageDialog(null, "Details:\n" + house.toString());
+            }
+        });
+
         return rentalPanel;
     }
 
@@ -108,6 +98,7 @@ public class Content {
         label.setForeground(Color.WHITE);
         return label;
     }
+
 
     private void createRandomData() {
         for (int i = 0; i < 5; i++) {
