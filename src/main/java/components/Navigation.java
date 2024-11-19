@@ -1,30 +1,21 @@
 package components;
 
+import components.buttons.NavButton;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class Navigation {
     JPanel navPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 0)); // Adjust horizontal spacing
     JLabel avatarLabel = this.createAvatar();
+    NavButton viviendasButton= new NavButton("Viviendas");
+    NavButton usuariosButton = new NavButton("Usuarios");
 
     public Navigation() {
         navPanel.setOpaque(false); // Match header background
-        this.AddLinks();
+        navPanel.add(viviendasButton);
+        navPanel.add(usuariosButton);
         navPanel.add(avatarLabel);
-    }
-
-    private void AddLinks() {
-        String[] navItems = {"Viviendas", "Usuarios"};
-        for (String navItem : navItems) {
-            JButton navButton = new JButton(navItem);
-            navButton.setFont(new Font("Work Sans", Font.PLAIN, 14));
-            navButton.setForeground(Color.WHITE);
-            navButton.setContentAreaFilled(false);
-            navButton.setBorderPainted(false);
-            navButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-            navButton.setPreferredSize(new Dimension(100, 30)); // Uniform button size
-            navPanel.add(navButton);
-        }
     }
 
     private JLabel createAvatar() {

@@ -1,5 +1,7 @@
 package components;
 
+import pages.HousesPage;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -7,7 +9,7 @@ public class MainPanel {
 
     private JPanel mainPanel;
     private JPanel header = new Header().getHeader();
-    private JPanel contentPanel = new Content().GetContent();
+    private JPanel contentPanel = new HousesPage().GetContent();
 
    public MainPanel() {
        this.mainPanel = new JPanel();

@@ -13,6 +13,10 @@ public class SearchForm extends JPanel {
         // Use BoxLayout for a simple vertical layout
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setOpaque(false); // Make the background transparent
+        // Título
+        JLabel sectionTitle = createSectionTitle();
+        this.add(sectionTitle, BorderLayout.NORTH);
+        this.add(Box.createRigidArea(new Dimension(0, 10))); // Espacio entre título y formulario
 
         // Panel for date filters
         JPanel datePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -58,6 +62,15 @@ public class SearchForm extends JPanel {
         add(datePanel);
         add(Box.createRigidArea(new Dimension(0, 10))); // Small space between panels
         add(searchPanel);
+    }
+
+
+    private JLabel createSectionTitle() {
+        JLabel sectionTitle = new JLabel("Control de Alquileres");
+        sectionTitle.setFont(new Font("Work Sans", Font.BOLD, 28));
+        sectionTitle.setForeground(Color.WHITE);
+        sectionTitle.setBorder(BorderFactory.createEmptyBorder(10, 0, 20, 0));
+        return sectionTitle;
     }
 
     public String getSearchText() {

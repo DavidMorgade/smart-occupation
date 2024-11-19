@@ -1,5 +1,6 @@
-package components;
+package pages;
 
+import components.SearchForm;
 import components.buttons.StylishButton;
 import mocks.Client;
 import mocks.House;
@@ -10,25 +11,20 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Content {
+public class HousesPage {
     private JPanel contentPanel = new JPanel(); // Panel principal
     private JPanel rentalListPanel = new JPanel(); // Panel para las cards
     private List<House> houseList = new ArrayList<>(); // Lista de viviendas
     private SearchForm searchForm = new SearchForm(); // Formulario de búsqueda
 
-    public Content() {
-        contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
+    public HousesPage() {
+        contentPanel.setLayout(new BorderLayout());
         contentPanel.setBackground(new Color(0x121C22)); // Fondo oscuro
         contentPanel.setBorder(BorderFactory.createEmptyBorder(20, 40, 20, 40));
 
-        // Título
-        JLabel sectionTitle = createSectionTitle();
-        sectionTitle.setAlignmentX(Component.CENTER_ALIGNMENT); // Centrar título
-        contentPanel.add(sectionTitle);
-        contentPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Espacio entre título y formulario
 
         // Añadir formulario de búsqueda
-        contentPanel.add(searchForm);
+        contentPanel.add(searchForm, BorderLayout.NORTH);
         contentPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Espacio entre formulario y lista
 
         // Panel para las cards
@@ -47,13 +43,7 @@ public class Content {
         return contentPanel;
     }
 
-    private JLabel createSectionTitle() {
-        JLabel sectionTitle = new JLabel("Control de Alquileres");
-        sectionTitle.setFont(new Font("Work Sans", Font.BOLD, 28));
-        sectionTitle.setForeground(Color.WHITE);
-        sectionTitle.setBorder(BorderFactory.createEmptyBorder(10, 0, 20, 0));
-        return sectionTitle;
-    }
+
 
     private JPanel createRentalItem(House house, boolean isAlternate) {
         JPanel rentalPanel = new JPanel(new BorderLayout()); // BorderLayout para cards de ancho completo
@@ -63,8 +53,8 @@ public class Content {
                 BorderFactory.createEmptyBorder(10, 10, 10, 10)
         ));
         // Dejo un tamaño fijo para las cards
-        rentalPanel.setPreferredSize(new Dimension(1000, 200));
-        rentalPanel.setMaximumSize(new Dimension(1000, 200));
+        rentalPanel.setPreferredSize(new Dimension(2000, 150));
+        rentalPanel.setMaximumSize(new Dimension(2000, 150));
         // Información de la vivienda
         JPanel infoPanel = new JPanel(new GridLayout(2, 2, 10, 10));
         infoPanel.setBackground(rentalPanel.getBackground());
@@ -87,7 +77,7 @@ public class Content {
     }
 
     private void createRandomData() {
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 5; i++) {
             Client client = new Client("Huésped " + i, "email" + i + "@gmail.com", "123456789", "12345678A", 123456789);
             House house = new House(client, 1, new Date(), new Date(), 1, "Calle " + i, 100, 3, 2, 1000);
             houseList.add(house);

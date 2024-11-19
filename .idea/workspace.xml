@@ -4,9 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5b66dcb7-bb43-42d0-9fc4-0489da58889c" name="Changes" comment="added functionality to the form">
+    <list default="true" id="5b66dcb7-bb43-42d0-9fc4-0489da58889c" name="Changes" comment="fixing the content when searching with the form">
+      <change afterPath="$PROJECT_DIR$/src/main/java/components/buttons/NavButton.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/pages/ClientsPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/components/Content.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/components/Content.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/components/Content.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/HousesPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/components/MainPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/components/MainPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/components/Navigation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/components/Navigation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/components/SearchForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/components/SearchForm.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +66,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -98,7 +103,9 @@
       <workItem from="1731963029738" duration="125000" />
       <workItem from="1731963164050" duration="1037000" />
       <workItem from="1732035222308" duration="134000" />
-      <workItem from="1732035364111" duration="819000" />
+      <workItem from="1732035364111" duration="956000" />
+      <workItem from="1732046049696" duration="99000" />
+      <workItem from="1732046155416" duration="2358000" />
     </task>
     <task id="LOCAL-00001" summary="added first form">
       <option name="closed" value="true" />
@@ -164,7 +171,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731964190044</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="fixing the content when searching with the form">
+      <option name="closed" value="true" />
+      <created>1732036310923</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1732036310923</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -176,6 +191,7 @@
     <MESSAGE value="improving the card of the ui, added different colors" />
     <MESSAGE value="fixed cards layout, added view details btn" />
     <MESSAGE value="added functionality to the form" />
-    <option name="LAST_COMMIT_MESSAGE" value="added functionality to the form" />
+    <MESSAGE value="fixing the content when searching with the form" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixing the content when searching with the form" />
   </component>
 </project>
