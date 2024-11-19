@@ -62,7 +62,9 @@ public class Content {
                 BorderFactory.createLineBorder(new Color(0x37474F), 2),
                 BorderFactory.createEmptyBorder(10, 10, 10, 10)
         ));
-
+        // Dejo un tamaño fijo para las cards
+        rentalPanel.setPreferredSize(new Dimension(1000, 200));
+        rentalPanel.setMaximumSize(new Dimension(1000, 200));
         // Información de la vivienda
         JPanel infoPanel = new JPanel(new GridLayout(2, 2, 10, 10));
         infoPanel.setBackground(rentalPanel.getBackground());
