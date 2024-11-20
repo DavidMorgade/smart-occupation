@@ -1,7 +1,8 @@
 package pages;
 
+import components.SimpleSearchForm;
 import components.buttons.StylishButton;
-import components.labels.PageTitle;
+import db.DatabaseManager;
 import mocks.Client;
 
 import javax.swing.*;
@@ -11,19 +12,16 @@ import java.util.List;
 
 public class ClientsPage extends JPanel {
     private final JPanel clientListPanel = new JPanel(); // Panel for the client cards
+    private final SimpleSearchForm searchForm = new SimpleSearchForm(); // Search form
     private final List<Client> clientList = new ArrayList<>(); // List of clients
-    private final PageTitle pageTitle = new PageTitle("Control de Clientes");
 
     public ClientsPage() {
         this.setLayout(new BorderLayout());
         this.setBackground(new Color(0x121C22)); // Dark background
         this.setBorder(BorderFactory.createEmptyBorder(20, 40, 20, 40));
+        //añadir el formulario de búsqueda
+        this.add(searchForm, BorderLayout.NORTH);
 
-        // Add the title
-        this.add(pageTitle, BorderLayout.NORTH);
-        this.add(Box.createRigidArea(new Dimension(0, 10))); // Space between the search form and the list
-        // center the title
-        pageTitle.setHorizontalAlignment(SwingConstants.CENTER);
 
         // Panel for the client cards
         clientListPanel.setLayout(new BoxLayout(clientListPanel, BoxLayout.Y_AXIS));
@@ -32,6 +30,7 @@ public class ClientsPage extends JPanel {
 
         // Create initial data
         createRandomClients();
+        this.setupSearchListener();
     }
 
     private JPanel createClientCard(Client client, boolean isAlternate) {
@@ -100,7 +99,35 @@ public class ClientsPage extends JPanel {
         clientListPanel.repaint();
     }
 
+    private void setupSearchListener() {
+        searchForm.addSearchListener(new javax.swing.event.DocumentListener() {
+            @Override
+            public void insertUpdate(javax.swing.event.DocumentEvent e) {
+                filterClients();
+            }
+
+            @Override
+            public void removeUpdate(javax.swing.event.DocumentEvent e) {
+                filterClients();
+            }
+
+            @Override
+            public void changedUpdate(javax.swing.event.DocumentEvent e) {
+                filterClients();
+            }
+        });
+    }
 
     private void filterClients() {
+        String searchText = searchForm.getSearchText();
+
+        List<Client> filteredClients = new ArrayList<>();
+        for (Client client : clientList) {
+            if (client.getFullName().toLowerCase().contains(searchText)) {
+                filteredClients.add(client);
+            }
+        }
+
+        renderClients(filteredClients);
     }
 }

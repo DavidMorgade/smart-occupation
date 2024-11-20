@@ -21,6 +21,10 @@ public class LoginPage extends JPanel {
         this.setLayout(new GridBagLayout()); // Center all components
         this.setBackground(new Color(0x121C22)); // Dark background
 
+        // placeholder para los comentarios
+        usernameField.setToolTipText("Ingrese su usuario");
+        passwordField.setToolTipText("Ingrese su contraseña");
+
         // Container for the form
         JPanel formPanel = new JPanel();
         formPanel.setLayout(new BoxLayout(formPanel, BoxLayout.Y_AXIS));
