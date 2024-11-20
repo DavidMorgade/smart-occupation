@@ -5,22 +5,13 @@ import pages.HousesPage;
 import javax.swing.*;
 import java.awt.*;
 
-public class MainPanel {
+public class MainPanel extends JPanel {
 
-    private JPanel mainPanel;
-    private JPanel header = new Header().getHeader();
-    private JPanel contentPanel = new HousesPage().GetContent();
 
    public MainPanel() {
-       this.mainPanel = new JPanel();
-       mainPanel.setLayout(new BorderLayout());
-       mainPanel.setBackground(new Color(0x121C22));
-       mainPanel.add(header, BorderLayout.NORTH);
-       mainPanel.add(contentPanel, BorderLayout.CENTER);
+       this.setLayout(new BorderLayout());
+       this.setBackground(new Color(0x121C22));
    }
 
-    public JPanel getMainPanel() {
-         return mainPanel;
-    }
-
 }
+

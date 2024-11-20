@@ -11,26 +11,25 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class HousesPage {
-    private JPanel contentPanel = new JPanel(); // Panel principal
+public class HousesPage extends JPanel {
     private JPanel rentalListPanel = new JPanel(); // Panel para las cards
     private List<House> houseList = new ArrayList<>(); // Lista de viviendas
     private SearchForm searchForm = new SearchForm(); // Formulario de búsqueda
 
     public HousesPage() {
-        contentPanel.setLayout(new BorderLayout());
-        contentPanel.setBackground(new Color(0x121C22)); // Fondo oscuro
-        contentPanel.setBorder(BorderFactory.createEmptyBorder(20, 40, 20, 40));
+        this.setLayout(new BorderLayout());
+        this.setBackground(new Color(0x121C22)); // Fondo oscuro
+        this.setBorder(BorderFactory.createEmptyBorder(20, 40, 20, 40));
 
 
         // Añadir formulario de búsqueda
-        contentPanel.add(searchForm, BorderLayout.NORTH);
-        contentPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Espacio entre formulario y lista
+        this.add(searchForm, BorderLayout.NORTH);
+        this.add(Box.createRigidArea(new Dimension(0, 10))); // Espacio entre formulario y lista
 
         // Panel para las cards
         rentalListPanel.setLayout(new BoxLayout(rentalListPanel, BoxLayout.Y_AXIS));
         rentalListPanel.setOpaque(false); // Fondo transparente
-        contentPanel.add(rentalListPanel);
+        this.add(rentalListPanel);
 
         // Crea datos iniciales
         createRandomData();
@@ -38,12 +37,6 @@ public class HousesPage {
         // Configura los filtros dinámicos
         setupFilters();
     }
-
-    public JPanel GetContent() {
-        return contentPanel;
-    }
-
-
 
     private JPanel createRentalItem(House house, boolean isAlternate) {
         JPanel rentalPanel = new JPanel(new BorderLayout()); // BorderLayout para cards de ancho completo

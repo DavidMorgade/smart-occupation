@@ -9,35 +9,30 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClientsPage {
-    private JPanel contentPanel = new JPanel(); // Main panel
+public class ClientsPage extends JPanel {
     private JPanel clientListPanel = new JPanel(); // Panel for the client cards
     private List<Client> clientList = new ArrayList<>(); // List of clients
     private SearchForm searchForm = new SearchForm(); // Search form
 
     public ClientsPage() {
-        contentPanel.setLayout(new BorderLayout());
-        contentPanel.setBackground(new Color(0x121C22)); // Dark background
-        contentPanel.setBorder(BorderFactory.createEmptyBorder(20, 40, 20, 40));
+        this.setLayout(new BorderLayout());
+        this.setBackground(new Color(0x121C22)); // Dark background
+        this.setBorder(BorderFactory.createEmptyBorder(20, 40, 20, 40));
 
         // Add the search form
-        contentPanel.add(searchForm, BorderLayout.NORTH);
-        contentPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Space between the search form and the list
+        this.add(searchForm, BorderLayout.NORTH);
+        this.add(Box.createRigidArea(new Dimension(0, 10))); // Space between the search form and the list
 
         // Panel for the client cards
         clientListPanel.setLayout(new BoxLayout(clientListPanel, BoxLayout.Y_AXIS));
         clientListPanel.setOpaque(false); // Transparent background
-        contentPanel.add(clientListPanel, BorderLayout.CENTER);
+        this.add(clientListPanel, BorderLayout.CENTER);
 
         // Create initial data
         createRandomClients();
 
         // Set up dynamic filters
         setupFilters();
-    }
-
-    public JPanel GetClientsPage() {
-        return contentPanel;
     }
 
     private JPanel createClientCard(Client client, boolean isAlternate) {

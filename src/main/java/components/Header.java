@@ -5,10 +5,11 @@ import java.awt.*;
 
 public class Header {
     JPanel titlePanel = new Title().getTitle();
-    JPanel navPanel = new Navigation().getNavigation();
+    JPanel navPanel;
     JPanel header = new JPanel(new GridBagLayout()); // GridBaglayout para alinear elementos
 
-    public Header() {
+    public Header(JPanel mainPanel) {
+        this.navPanel = new Navigation(mainPanel).getNavigation();
         // Header styling
         header.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(0xe7eff3)));
         header.setBackground(new Color(0x121C22));
