@@ -3,17 +3,17 @@ package components;
 import javax.swing.*;
 import java.awt.*;
 
-public class Header {
+public class Header extends JPanel {
     JPanel titlePanel = new Title().getTitle();
     JPanel navPanel;
-    JPanel header = new JPanel(new GridBagLayout()); // GridBaglayout para alinear elementos
 
     public Header(JPanel mainPanel) {
+        this.setLayout(new GridBagLayout());
         this.navPanel = new Navigation(mainPanel).getNavigation();
         // Header styling
-        header.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(0xe7eff3)));
-        header.setBackground(new Color(0x121C22));
-        header.setPreferredSize(new Dimension(0, 60));
+        this.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(0xe7eff3)));
+        this.setBackground(new Color(0x121C22));
+        this.setPreferredSize(new Dimension(0, 60));
 
         // Add title panel
         GridBagConstraints gbcTitle = new GridBagConstraints();
@@ -22,7 +22,7 @@ public class Header {
         gbcTitle.weightx = 1.0;
         gbcTitle.anchor = GridBagConstraints.WEST; // Alinear a la izq
         gbcTitle.fill = GridBagConstraints.VERTICAL;
-        header.add(titlePanel, gbcTitle);
+        this.add(titlePanel, gbcTitle);
 
         // Add navigation panel
         GridBagConstraints gbcNav = new GridBagConstraints();
@@ -31,13 +31,10 @@ public class Header {
         gbcNav.weightx = 1.0;
         gbcNav.anchor = GridBagConstraints.EAST; // Alinear a la derecha
         gbcNav.fill = GridBagConstraints.VERTICAL;
-        header.add(navPanel, gbcNav);
+        this.add(navPanel, gbcNav);
 
         titlePanel.setOpaque(false);
         navPanel.setOpaque(false);
     }
 
-    public JPanel getHeader() {
-        return header;
-    }
 }

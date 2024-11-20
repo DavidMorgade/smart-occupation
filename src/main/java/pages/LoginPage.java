@@ -1,5 +1,6 @@
 package pages;
 
+import components.Header;
 import components.buttons.StylishButton;
 
 import javax.swing.*;
@@ -9,8 +10,14 @@ public class LoginPage extends JPanel {
     private final JTextField usernameField = new JTextField(20);
     private final JPasswordField passwordField = new JPasswordField(20);
     private final JLabel errorLabel = new JLabel("");
+    private final JPanel mainPanel;
+    private final Header header;
+    private boolean isLogged;
 
-    public LoginPage() {
+    public LoginPage(JPanel mainPanel, Header header, boolean isLogged) {
+        this.header = header;
+        this.isLogged = isLogged;
+        this.mainPanel = mainPanel;
         this.setLayout(new GridBagLayout()); // Center all components
         this.setBackground(new Color(0x121C22)); // Dark background
 
@@ -92,8 +99,14 @@ public class LoginPage extends JPanel {
             errorLabel.setText("Usuario o contraseña incorrectos.");
         } else {
             errorLabel.setText("");
+            this.header.setVisible(true);
+            this.isLogged = true;
             JOptionPane.showMessageDialog(this, "¡Bienvenido " + username + "!", "Login Exitoso", JOptionPane.INFORMATION_MESSAGE);
-            // Aquí puedes cambiar de página, como por ejemplo navegando al dashboard
+            // Cambiar a la página principal
+            mainPanel.removeAll();
+            mainPanel.add(new HousesPage());
+            mainPanel.revalidate();
+            mainPanel.repaint();
         }
     }
 

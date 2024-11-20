@@ -12,6 +12,7 @@ public class SmartOccupation {
     }
 
     private static void createAndShowGUI() {
+        boolean isLogged = false;
         JFrame frame = new JFrame("Smart Occupation");
         frame.setLayout(new BorderLayout());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -21,10 +22,13 @@ public class SmartOccupation {
         MainPanel mainPanel = new MainPanel();
         Header header = new Header(mainPanel);
 
-        frame.add(header.getHeader(), BorderLayout.NORTH);
+        LoginPage loginPage = new LoginPage(mainPanel, header, isLogged);
+        if (!isLogged) {
+            header.setVisible(false);
+        }
+        frame.add(header, BorderLayout.NORTH);
         frame.add(mainPanel);
 
-        LoginPage loginPage = new LoginPage();
 
         mainPanel.add(loginPage, BorderLayout.CENTER);
 

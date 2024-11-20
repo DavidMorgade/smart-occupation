@@ -1,6 +1,8 @@
 package components;
 
 import com.toedter.calendar.JDateChooser;
+import components.labels.PageTitle;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -8,14 +10,14 @@ public class SearchForm extends JPanel {
     private JTextField searchField = new JTextField(20); // Text field for search
     private JDateChooser entryDateChooser = new JDateChooser(); // Date chooser for entry date
     private JDateChooser exitDateChooser = new JDateChooser(); // Date chooser for exit date
+    private PageTitle pageTitle = new PageTitle("Control de Alquileres");
 
     public SearchForm() {
         // Use BoxLayout for a simple vertical layout
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setOpaque(false); // Make the background transparent
         // Título
-        JLabel sectionTitle = createSectionTitle();
-        this.add(sectionTitle, BorderLayout.NORTH);
+        this.add(pageTitle, BorderLayout.NORTH);
         this.add(Box.createRigidArea(new Dimension(0, 10))); // Espacio entre título y formulario
 
         // Panel for date filters
