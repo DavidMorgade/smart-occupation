@@ -1,5 +1,8 @@
 package db;
 
+import mocks.Client;
+import mocks.House;
+
 import java.sql.*;
 import java.util.Date;
 
@@ -122,6 +125,32 @@ public class DatabaseManager {
             System.out.println("Error al consultar viviendas: " + e.getMessage());
             return null;
         }
+    }
+
+    // Cliente asociado a una vivienda
+    public static Client getClientFromHouse(House house) {
+        String querySQL = """
+                    SELECT * FROM Clients
+                    WHERE id = ?;
+                """;
+
+        try (Connection connection = connect();
+             PreparedStatement statement = connection.prepareStatement(querySQL)) {
+            statement.setInt(1, house.getClientId());
+            ResultSet result = statement.executeQuery();
+            if (result.next()) {
+                return new Client(
+                        result.getString("full_name"),
+                        result.getString("email"),
+                        result.getString("phone"),
+                        result.getString("dni"),
+                        result.getInt("card_number")
+                );
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al obtener el cliente de la vivienda: " + e.getMessage());
+        }
+        return null;
     }
 }
 

@@ -2,7 +2,6 @@ package pages;
 
 import components.SimpleSearchForm;
 import components.buttons.StylishButton;
-import db.DatabaseManager;
 import mocks.Client;
 
 import javax.swing.*;
@@ -29,7 +28,7 @@ public class ClientsPage extends JPanel {
         this.add(clientListPanel, BorderLayout.CENTER);
 
         // Create initial data
-        createRandomClients();
+        retrieveClientsFromDB();
         this.setupSearchListener();
     }
 
@@ -74,7 +73,7 @@ public class ClientsPage extends JPanel {
         return "*".repeat(length - 4) + cardStr.substring(length - 4);
     }
 
-    private void createRandomClients() {
+    private void retrieveClientsFromDB() {
         for (int i = 0; i < 5; i++) {
             Client client = new Client("Cliente " + i, "email" + i + "@gmail.com", "123456789", "DNI" + i, 1234567812 + i);
             clientList.add(client);

@@ -2,11 +2,14 @@ package pages;
 
 import components.SearchForm;
 import components.buttons.StylishButton;
+import db.DatabaseManager;
 import mocks.Client;
 import mocks.House;
 
 import javax.swing.*;
 import java.awt.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -32,7 +35,7 @@ public class HousesPage extends JPanel {
         this.add(rentalListPanel);
 
         // Crea datos iniciales
-        createRandomData();
+        getHousesFromDB();
 
         // Configura los filtros dinámicos
         setupFilters();
@@ -69,13 +72,28 @@ public class HousesPage extends JPanel {
         return label;
     }
 
-    private void createRandomData() {
-        for (int i = 0; i < 5; i++) {
-            Client client = new Client("Huésped " + i, "email" + i + "@gmail.com", "123456789", "12345678A", 123456789);
-            House house = new House(client, 1, new Date(), new Date(), 1, "Calle " + i, 100, 3, 2, 1000);
-            houseList.add(house);
-        }
+    private void getHousesFromDB() {
 
+        System.out.println("\nViviendas en la base de datos:");
+        try (ResultSet houses = DatabaseManager.getAllHouses()) {
+            while (houses != null && houses.next()) {
+                House house = new House(
+                        null, // El cliente puede ser resuelto con un JOIN
+                        houses.getInt("exp_number"),
+                        new java.util.Date(), // Convertir fechas correctamente
+                        new java.util.Date(),
+                        houses.getInt("house_id"),
+                        houses.getString("location"),
+                        houses.getInt("meters"),
+                        houses.getInt("rooms"),
+                        houses.getInt("bathrooms"),
+                        houses.getInt("mensual_price")
+                );
+                System.out.println("Ubicación: " + house.getLocation() + ", Precio Mensual: $" + house.getMensualPrice());
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al leer viviendas: " + e.getMessage());
+        }
         // Renderiza inicialmente todas las viviendas
         renderContent(houseList);
     }
