@@ -2,10 +2,13 @@ package pages;
 
 import components.SimpleSearchForm;
 import components.buttons.StylishButton;
+import db.DatabaseManager;
 import mocks.Client;
 
 import javax.swing.*;
 import java.awt.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,9 +77,19 @@ public class ClientsPage extends JPanel {
     }
 
     private void retrieveClientsFromDB() {
-        for (int i = 0; i < 5; i++) {
-            Client client = new Client("Cliente " + i, "email" + i + "@gmail.com", "123456789", "DNI" + i, 1234567812 + i);
-            clientList.add(client);
+        try (ResultSet clients = DatabaseManager.getAllClients()) {
+            while (clients != null && clients.next()) {
+                clientList.add(new Client(
+                        clients.getString("full_name"),
+                        clients.getString("email"),
+                        clients.getString("phone"),
+                        clients.getString("dni"),
+                        clients.getInt("card_number"),
+                        clients.getInt("id")
+                ));
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al leer clientes: " + e.getMessage());
         }
 
         // Render all clients initially

@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static db.DatabaseManager.getClientFromHouse;
+
 public class HousesPage extends JPanel {
     private JPanel rentalListPanel = new JPanel(); // Panel para las cards
     private List<House> houseList = new ArrayList<>(); // Lista de viviendas
@@ -74,22 +76,24 @@ public class HousesPage extends JPanel {
 
     private void getHousesFromDB() {
 
-        System.out.println("\nViviendas en la base de datos:");
+        System.out.println("\nViviendas en la base de datos:a");
         try (ResultSet houses = DatabaseManager.getAllHouses()) {
             while (houses != null && houses.next()) {
+                Client client = getClientFromHouse(houses.getInt("id"));
                 House house = new House(
-                        null, // El cliente puede ser resuelto con un JOIN
+                        client,
                         houses.getInt("exp_number"),
                         new java.util.Date(), // Convertir fechas correctamente
                         new java.util.Date(),
-                        houses.getInt("house_id"),
+                        houses.getInt("id"),
                         houses.getString("location"),
                         houses.getInt("meters"),
                         houses.getInt("rooms"),
                         houses.getInt("bathrooms"),
                         houses.getInt("mensual_price")
                 );
-                System.out.println("Ubicación: " + house.getLocation() + ", Precio Mensual: $" + house.getMensualPrice());
+                houseList.add(house);
+                System.out.println("Ubicación: " + house.getLocation() + ", Precio Mensual: $" + house.getMensualPrice() + "id: " + house.getHouseId());
             }
         } catch (SQLException e) {
             System.out.println("Error al leer viviendas: " + e.getMessage());

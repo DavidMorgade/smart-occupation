@@ -58,11 +58,23 @@ public class DatabaseManager {
         }
     }
 
+    public static void deleteAllTables() {
+        String deleteClientsTable = "DROP TABLE IF EXISTS Clients;";
+        String deleteHousesTable = "DROP TABLE IF EXISTS Houses;";
+        try (Connection connection = connect();
+             Statement statement = connection.createStatement()) {
+            statement.execute(deleteClientsTable);
+            statement.execute(deleteHousesTable);
+        } catch (SQLException e) {
+            System.out.println("Error al eliminar las tablas: " + e.getMessage());
+        }
+    }
+
     // Insertar cliente
-    public static void addClient(String fullName, String email, String phone, String dni, int cardNumber) {
+    public static void addClient(String fullName, String email, String phone, String dni, int cardNumber, int id) {
         String insertSQL = """
-                    INSERT INTO Clients (full_name, email, phone, dni, card_number)
-                    VALUES (?, ?, ?, ?, ?);
+                    INSERT INTO Clients (full_name, email, phone, dni, card_number, id)
+                    VALUES (?, ?, ?, ?, ?, ?);
                 """;
 
         try (Connection connection = connect();
@@ -72,6 +84,7 @@ public class DatabaseManager {
             statement.setString(3, phone);
             statement.setString(4, dni);
             statement.setInt(5, cardNumber);
+            statement.setInt(6, id);
             statement.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Error al agregar el cliente: " + e.getMessage());
@@ -128,7 +141,7 @@ public class DatabaseManager {
     }
 
     // Cliente asociado a una vivienda
-    public static Client getClientFromHouse(House house) {
+    public static Client getClientFromHouse(int houseId) {
         String querySQL = """
                     SELECT * FROM Clients
                     WHERE id = ?;
@@ -136,7 +149,7 @@ public class DatabaseManager {
 
         try (Connection connection = connect();
              PreparedStatement statement = connection.prepareStatement(querySQL)) {
-            statement.setInt(1, house.getClientId());
+            statement.setInt(1, houseId);
             ResultSet result = statement.executeQuery();
             if (result.next()) {
                 return new Client(
@@ -144,7 +157,8 @@ public class DatabaseManager {
                         result.getString("email"),
                         result.getString("phone"),
                         result.getString("dni"),
-                        result.getInt("card_number")
+                        result.getInt("card_number"),
+                        result.getInt("id")
                 );
             }
         } catch (SQLException e) {

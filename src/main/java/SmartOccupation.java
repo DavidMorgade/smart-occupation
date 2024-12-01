@@ -14,6 +14,7 @@ public class SmartOccupation {
 
     public static void main(String[] args) {
         // inicializamos la DB
+        DatabaseManager.deleteAllTables();
         DatabaseManager.initializeDatabase();
         // Agregar varios clientes usando un loop
         for (int i = 1; i <= 10; i++) {
@@ -22,12 +23,13 @@ public class SmartOccupation {
             String phone = "12345678" + i;
             String dni = "DNI" + i;
             int cardNumber = 41111111 + i;
-            DatabaseManager.addClient(fullName, email, phone, dni, cardNumber);
+            int id = i;
+            DatabaseManager.addClient(fullName, email, phone, dni, cardNumber, id);
         }
 
         // Agregar varias viviendas asociadas a los clientes
         for (int i = 1; i <= 10; i++) {
-            int clientId = i; // Asociar cada vivienda al cliente con el mismo ID
+            int clientId = 1000 + i; // Asociar cada vivienda al cliente con el mismo ID
             int expNumber = 1000 + i;
             Date entryDate = new Date();
             Date exitDate = new Date(entryDate.getTime() + (7L * 24 * 60 * 60 * 1000)); // Una semana después
@@ -40,7 +42,7 @@ public class SmartOccupation {
             DatabaseManager.addHouse(clientId, expNumber, entryDate, exitDate, houseId, location, meters, rooms, bathrooms, mensualPrice);
         }
         // Leer viviendas y mostrarlas
-        System.out.println("\nViviendas en la base de datos:");
+        System.out.println("\nViviendas en la base de datos:aa");
         try (ResultSet houses = DatabaseManager.getAllHouses()) {
             while (houses != null && houses.next()) {
                 House house = new House(
@@ -48,17 +50,27 @@ public class SmartOccupation {
                         houses.getInt("exp_number"),
                         new java.util.Date(), // Convertir fechas correctamente
                         new java.util.Date(),
-                        houses.getInt("house_id"),
+                        houses.getInt("id"),
                         houses.getString("location"),
                         houses.getInt("meters"),
                         houses.getInt("rooms"),
                         houses.getInt("bathrooms"),
                         houses.getInt("mensual_price")
                 );
-                System.out.println("Ubicación: " + house.getLocation() + ", Precio Mensual: $" + house.getMensualPrice());
+                System.out.println("Ubicación: " + house.getLocation() + ", Precio Mensual: $" + house.getMensualPrice() + "id: " + house.getHouseId());
             }
         } catch (SQLException e) {
             System.out.println("Error al leer viviendas: " + e.getMessage());
+        }
+
+        // Leer clientes y mostrarlos
+        System.out.println("\nClientes en la base de datos:");
+        try (ResultSet clients = DatabaseManager.getAllClients()) {
+            while (clients != null && clients.next()) {
+                System.out.println("Nombre: " + clients.getString("full_name") + ", Email: " + clients.getString("email") + "id: " + clients.getInt("id"));
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al leer clientes: " + e.getMessage());
         }
 
         // Inicializamos la Interfaz
