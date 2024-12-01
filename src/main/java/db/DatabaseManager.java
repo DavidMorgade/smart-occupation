@@ -24,11 +24,13 @@ public class DatabaseManager {
         String createClientsTable = """
                     CREATE TABLE IF NOT EXISTS Clients (
                         id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        house_id INTEGER,
                         full_name TEXT NOT NULL,
                         email TEXT NOT NULL,
                         phone TEXT,
                         dni TEXT NOT NULL UNIQUE,
-                        card_number INTEGER NOT NULL UNIQUE
+                        card_number INTEGER NOT NULL UNIQUE,
+                        FOREIGN KEY (house_id) REFERENCES Houses(id)
                     );
                 """;
 
@@ -71,10 +73,10 @@ public class DatabaseManager {
     }
 
     // Insertar cliente
-    public static void addClient(String fullName, String email, String phone, String dni, int cardNumber, int id) {
+    public static void addClient(String fullName, String email, String phone, String dni, int cardNumber, int id, int houseId) {
         String insertSQL = """
-                    INSERT INTO Clients (full_name, email, phone, dni, card_number, id)
-                    VALUES (?, ?, ?, ?, ?, ?);
+                    INSERT INTO Clients (full_name, email, phone, dni, card_number, id, house_id)
+                    VALUES (?, ?, ?, ?, ?, ?, ?);
                 """;
 
         try (Connection connection = connect();
@@ -140,6 +142,37 @@ public class DatabaseManager {
         }
     }
 
+    // Vivienda asociada a un cliente
+    public static House getHouseFromClient(int clientId) {
+        String querySQL = """
+                    SELECT * FROM Houses
+                    WHERE client_id = ?;
+                """;
+
+        try (Connection connection = connect();
+             PreparedStatement statement = connection.prepareStatement(querySQL)) {
+            statement.setInt(1, clientId);
+            ResultSet result = statement.executeQuery();
+            if (result.next()) {
+                return new House(
+                        null,
+                        result.getInt("exp_number"),
+                        new Date(),
+                        new Date(),
+                        result.getInt("id"),
+                        result.getString("location"),
+                        result.getInt("meters"),
+                        result.getInt("rooms"),
+                        result.getInt("bathrooms"),
+                        result.getInt("mensual_price")
+                );
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al obtener la vivienda del cliente: " + e.getMessage());
+        }
+        return null;
+    }
+
     // Cliente asociado a una vivienda
     public static Client getClientFromHouse(int houseId) {
         String querySQL = """
@@ -158,7 +191,8 @@ public class DatabaseManager {
                         result.getString("phone"),
                         result.getString("dni"),
                         result.getInt("card_number"),
-                        result.getInt("id")
+                        result.getInt("id"),
+                        houseId
                 );
             }
         } catch (SQLException e) {

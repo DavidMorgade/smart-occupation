@@ -24,7 +24,8 @@ public class SmartOccupation {
             String dni = "DNI" + i;
             int cardNumber = 41111111 + i;
             int id = i;
-            DatabaseManager.addClient(fullName, email, phone, dni, cardNumber, id);
+            int houseId = i;
+            DatabaseManager.addClient(fullName, email, phone, dni, cardNumber, id, houseId);
         }
 
         // Agregar varias viviendas asociadas a los clientes
