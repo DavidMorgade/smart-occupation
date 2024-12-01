@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5b66dcb7-bb43-42d0-9fc4-0489da58889c" name="Changes" comment="added working database, need to pass the data to the components">
+    <list default="true" id="5b66dcb7-bb43-42d0-9fc4-0489da58889c" name="Changes" comment="added the data from db to the frontend">
+      <change afterPath="$PROJECT_DIR$/src/main/java/components/ClientDetailsDialog.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SmartOccupation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SmartOccupation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/db/DatabaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/DatabaseManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mocks/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mocks/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pages/ClientsPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/ClientsPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pages/HousesPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/HousesPage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,7 +107,7 @@
       <workItem from="1732117112724" duration="9812000" />
       <workItem from="1732201433009" duration="1000" />
       <workItem from="1732880999570" duration="630000" />
-      <workItem from="1733078731524" duration="3182000" />
+      <workItem from="1733078731524" duration="3969000" />
     </task>
     <task id="LOCAL-00001" summary="added first form">
       <option name="closed" value="true" />
@@ -224,7 +221,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732881623577</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="added the data from db to the frontend">
+      <option name="closed" value="true" />
+      <created>1733082006131</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1733082006131</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -241,6 +246,7 @@
     <MESSAGE value="added routing and the login page" />
     <MESSAGE value="login now shows no header until logged in" />
     <MESSAGE value="added working database, need to pass the data to the components" />
-    <option name="LAST_COMMIT_MESSAGE" value="added working database, need to pass the data to the components" />
+    <MESSAGE value="added the data from db to the frontend" />
+    <option name="LAST_COMMIT_MESSAGE" value="added the data from db to the frontend" />
   </component>
 </project>

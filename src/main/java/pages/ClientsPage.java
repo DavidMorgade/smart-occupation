@@ -1,5 +1,6 @@
 package pages;
 
+import components.ClientDetailsDialog;
 import components.SimpleSearchForm;
 import components.buttons.StylishButton;
 import db.DatabaseManager;
@@ -57,6 +58,12 @@ public class ClientsPage extends JPanel {
 
         StylishButton detailsButton = new StylishButton("Ver Detalles");
         infoPanel.add(detailsButton);
+
+        detailsButton.addActionListener(e -> {
+            // Open a dialog with the client details
+            JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            new ClientDetailsDialog(parentFrame, client).setVisible(true);
+        });
 
         clientCard.add(infoPanel, BorderLayout.CENTER);
 
