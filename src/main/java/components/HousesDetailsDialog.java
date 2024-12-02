@@ -1,14 +1,14 @@
 package components;
 
 import components.buttons.StylishButton;
-import mocks.Client;
+import mocks.House;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class ClientDetailsDialog extends JDialog {
+public class HousesDetailsDialog extends JDialog {
 
-    public ClientDetailsDialog(JFrame parent, Client client) {
+    public HousesDetailsDialog(JFrame parent, House house) {
         super(parent, "Detalles del Cliente", true); // Modal dialog
 
         this.setLayout(new BorderLayout());
@@ -24,13 +24,14 @@ public class ClientDetailsDialog extends JDialog {
         gbc.fill = GridBagConstraints.HORIZONTAL; // Stretch horizontally
 
         // Add labels and values to the grid
-        addLabelAndValue(detailsPanel, gbc, "Nombre completo:", client.getFullName(), 0, 0);
-        addLabelAndValue(detailsPanel, gbc, "Email:", client.getEmail(), 0, 1);
-        addLabelAndValue(detailsPanel, gbc, "Teléfono:", client.getPhone(), 0, 2);
-        addLabelAndValue(detailsPanel, gbc, "DNI:", client.getDni(), 0, 3);
-        addLabelAndValue(detailsPanel, gbc, "Número de tarjeta:", maskCardNumber(client.getCardNumber()), 0, 4);
-        addLabelAndValue(detailsPanel, gbc, "ID Vivienda", String.valueOf(client.getHouseID()), 0, 5);
-
+        addLabelAndValue(detailsPanel, gbc, "Ocupada por: ", house.getClient().getFullName(), 0, 0);
+        addLabelAndValue(detailsPanel, gbc, "Fecha de entrada: ", String.valueOf(house.getEntryDate()), 0, 1);
+        addLabelAndValue(detailsPanel, gbc, "Fecha de salida: ", String.valueOf(house.getExitDate()), 0, 2);
+        addLabelAndValue(detailsPanel, gbc, "Identificador Vivienda: ", String.valueOf(house.getHouseId()), 0, 3);
+        addLabelAndValue(detailsPanel, gbc, "Ubicación: ", house.getLocation(), 0, 4);
+        addLabelAndValue(detailsPanel, gbc, "Metros Cuadrados: ", String.valueOf(house.getMeters()), 0, 5);
+        addLabelAndValue(detailsPanel, gbc, "Numero Habitaciones: ", String.valueOf(house.getRooms()), 0, 6);
+        addLabelAndValue(detailsPanel, gbc, "Precio Mensual: ", String.valueOf(house.getMensualPrice() + "$"), 0, 7);
 
         this.add(detailsPanel, BorderLayout.CENTER);
 

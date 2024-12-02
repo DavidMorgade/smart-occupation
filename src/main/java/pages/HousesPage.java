@@ -1,5 +1,6 @@
 package pages;
 
+import components.HousesDetailsDialog;
 import components.SearchForm;
 import components.buttons.StylishButton;
 import db.DatabaseManager;
@@ -61,7 +62,13 @@ public class HousesPage extends JPanel {
         infoPanel.add(dataLabel("Precio: $" + house.getMensualPrice()));
         infoPanel.add(dataLabel("Fecha entrada: " + house.getEntryDate().toString()));
         infoPanel.add(dataLabel("Fecha salida: " + house.getExitDate().toString()));
-        infoPanel.add(new StylishButton("Ver Detalles"));
+        StylishButton detailsButton = new StylishButton("Ver Detalles");
+        infoPanel.add(detailsButton);
+
+        detailsButton.addActionListener(e -> {
+            HousesDetailsDialog dialog = new HousesDetailsDialog((JFrame) SwingUtilities.getWindowAncestor(this), house);
+            dialog.setVisible(true);
+        });
 
         rentalPanel.add(infoPanel, BorderLayout.CENTER);
         return rentalPanel;
