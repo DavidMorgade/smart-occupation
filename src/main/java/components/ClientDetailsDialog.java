@@ -1,5 +1,6 @@
 package components;
 
+import components.buttons.StylishButton;
 import mocks.Client;
 
 import javax.swing.*;
@@ -31,6 +32,7 @@ public class ClientDetailsDialog extends JDialog {
 
         this.add(detailsPanel, BorderLayout.CENTER);
 
+        StylishButton closeButton = new StylishButton("Cerrar");
         // Close button
         closeButton.addActionListener(e -> this.dispose());
         JPanel buttonPanel = new JPanel();

@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5b66dcb7-bb43-42d0-9fc4-0489da58889c" name="Changes" comment="dialog for HousesDetailsDialog">
-      <change afterPath="$PROJECT_DIR$/src/main/java/reports/ReportGenerator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/reports/ReportGeneratorHouses.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Clientes.jasper" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Viviendas.jasper" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/waves.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/TestDB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pages/ClientsPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/ClientsPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pages/HousesPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/HousesPage.java" afterDir="false" />
-    </list>
+    <list default="true" id="5b66dcb7-bb43-42d0-9fc4-0489da58889c" name="Changes" comment="added reports jasper and logic to use them in buttons" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,6 +18,12 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -141,7 +136,7 @@
       <workItem from="1733078731524" duration="5929000" />
       <workItem from="1733153370029" duration="4559000" />
       <workItem from="1733252214049" duration="2554000" />
-      <workItem from="1733255083792" duration="1736000" />
+      <workItem from="1733255083792" duration="2045000" />
     </task>
     <task id="LOCAL-00001" summary="added first form">
       <option name="closed" value="true" />
@@ -287,11 +282,30 @@
       <option name="project" value="LOCAL" />
       <updated>1733154387668</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="added reports jasper and logic to use them in buttons">
+      <option name="closed" value="true" />
+      <created>1733256889263</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1733256889263</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added first form" />
@@ -307,6 +321,7 @@
     <MESSAGE value="added the data from db to the frontend" />
     <MESSAGE value="created dialog for the clients page" />
     <MESSAGE value="dialog for HousesDetailsDialog" />
-    <option name="LAST_COMMIT_MESSAGE" value="dialog for HousesDetailsDialog" />
+    <MESSAGE value="added reports jasper and logic to use them in buttons" />
+    <option name="LAST_COMMIT_MESSAGE" value="added reports jasper and logic to use them in buttons" />
   </component>
 </project>
