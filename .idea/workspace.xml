@@ -4,10 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5b66dcb7-bb43-42d0-9fc4-0489da58889c" name="Changes" comment="created dialog for the clients page">
-      <change afterPath="$PROJECT_DIR$/src/main/java/components/HousesDetailsDialog.java" afterDir="false" />
+    <list default="true" id="5b66dcb7-bb43-42d0-9fc4-0489da58889c" name="Changes" comment="dialog for HousesDetailsDialog">
+      <change afterPath="$PROJECT_DIR$/src/main/java/reports/ReportGenerator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/reports/ReportGeneratorHouses.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Clientes.jasper" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Viviendas.jasper" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/waves.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/TestDB.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/components/ClientDetailsDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/components/ClientDetailsDialog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pages/ClientsPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/ClientsPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pages/HousesPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/HousesPage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -37,6 +43,9 @@
     &quot;accountId&quot;: &quot;29926e93-aab5-47e4-9a25-457368cd9989&quot;
   }
 }</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
 }</component>
@@ -49,14 +58,16 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Application.ReportGenerator.executor&quot;: &quot;Run&quot;,
     &quot;Application.SmartOccupation.executor&quot;: &quot;Run&quot;,
     &quot;Application.SmartOcupation.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DatabaseManagerTest.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH&quot;: &quot;512&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/morgade/Documents/jcalendar-1.4.jar&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/morgade/IdeaProjects/smart-occupation/src/main/resources&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -69,7 +80,12 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.SmartOcupation">
     <configuration name="SmartOcupation" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="SmartOccupation" />
       <module name="smart-occupation" />
@@ -77,6 +93,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="DatabaseManagerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="smart-occupation" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="DatabaseManagerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.DatabaseManagerTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -109,7 +139,9 @@
       <workItem from="1732201433009" duration="1000" />
       <workItem from="1732880999570" duration="630000" />
       <workItem from="1733078731524" duration="5929000" />
-      <workItem from="1733153370029" duration="853000" />
+      <workItem from="1733153370029" duration="4559000" />
+      <workItem from="1733252214049" duration="2554000" />
+      <workItem from="1733255083792" duration="1736000" />
     </task>
     <task id="LOCAL-00001" summary="added first form">
       <option name="closed" value="true" />
@@ -247,7 +279,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733085660740</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="dialog for HousesDetailsDialog">
+      <option name="closed" value="true" />
+      <created>1733154387668</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1733154387668</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -266,6 +306,7 @@
     <MESSAGE value="added working database, need to pass the data to the components" />
     <MESSAGE value="added the data from db to the frontend" />
     <MESSAGE value="created dialog for the clients page" />
-    <option name="LAST_COMMIT_MESSAGE" value="created dialog for the clients page" />
+    <MESSAGE value="dialog for HousesDetailsDialog" />
+    <option name="LAST_COMMIT_MESSAGE" value="dialog for HousesDetailsDialog" />
   </component>
 </project>

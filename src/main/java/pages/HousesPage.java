@@ -6,6 +6,7 @@ import components.buttons.StylishButton;
 import db.DatabaseManager;
 import mocks.Client;
 import mocks.House;
+import reports.ReportGeneratorHouses;
 
 import javax.swing.*;
 import java.awt.*;
@@ -42,6 +43,16 @@ public class HousesPage extends JPanel {
 
         // Configura los filtros dinámicos
         setupFilters();
+
+        // Button for reports
+        StylishButton reportButton = new StylishButton("Generar Reporte");
+        reportButton.addActionListener(e -> {
+            // Generate the report
+            ReportGeneratorHouses.generateReport();
+        });
+
+        // Add the report button to the bottom of the page
+        this.add(reportButton, BorderLayout.SOUTH);
     }
 
     private JPanel createRentalItem(House house, boolean isAlternate) {

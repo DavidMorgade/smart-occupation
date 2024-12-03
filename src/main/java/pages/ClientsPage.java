@@ -5,6 +5,7 @@ import components.SimpleSearchForm;
 import components.buttons.StylishButton;
 import db.DatabaseManager;
 import mocks.Client;
+import reports.ReportGenerator;
 
 import javax.swing.*;
 import java.awt.*;
@@ -30,6 +31,16 @@ public class ClientsPage extends JPanel {
         clientListPanel.setLayout(new BoxLayout(clientListPanel, BoxLayout.Y_AXIS));
         clientListPanel.setOpaque(false); // Transparent background
         this.add(clientListPanel, BorderLayout.CENTER);
+
+        // Button for reports
+        StylishButton reportButton = new StylishButton("Generar Reporte");
+        reportButton.addActionListener(e -> {
+            // Generate the report
+            ReportGenerator.generateReport();
+        });
+
+        // Add the report button to the bottom of the page
+        this.add(reportButton, BorderLayout.SOUTH);
 
         // Create initial data
         retrieveClientsFromDB();
@@ -57,6 +68,7 @@ public class ClientsPage extends JPanel {
         infoPanel.add(dataLabel("Número de tarjeta: " + maskCardNumber(client.getCardNumber())));
 
         StylishButton detailsButton = new StylishButton("Ver Detalles");
+        detailsButton.setPreferredSize(new Dimension(150, 60));
         infoPanel.add(detailsButton);
 
         detailsButton.addActionListener(e -> {
