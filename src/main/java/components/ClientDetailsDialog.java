@@ -1,6 +1,5 @@
 package components;
 
-import components.buttons.StylishButton;
 import mocks.Client;
 
 import javax.swing.*;
@@ -29,13 +28,10 @@ public class ClientDetailsDialog extends JDialog {
         addLabelAndValue(detailsPanel, gbc, "Teléfono:", client.getPhone(), 0, 2);
         addLabelAndValue(detailsPanel, gbc, "DNI:", client.getDni(), 0, 3);
         addLabelAndValue(detailsPanel, gbc, "Número de tarjeta:", maskCardNumber(client.getCardNumber()), 0, 4);
-        addLabelAndValue(detailsPanel, gbc, "ID Vivienda", String.valueOf(client.getHouseID()), 0, 5);
-
 
         this.add(detailsPanel, BorderLayout.CENTER);
 
         // Close button
-        StylishButton closeButton = new StylishButton("Cerrar");
         closeButton.addActionListener(e -> this.dispose());
         JPanel buttonPanel = new JPanel();
         buttonPanel.setBackground(new Color(0x1A2A33));
